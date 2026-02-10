@@ -1,11 +1,22 @@
+import threading
 from typing import List, Optional
 import requests
 
 
 class TalkingDBClient:
-    def __init__(self, host: str):
-        self.host = host
-        self.session = requests.Session()
+    def __init__(self, host: str, timeout: float = 30.0):
+        self.host = host.rstrip("/")
+        self.timeout = timeout
+        self._local = threading.local()
+
+    def _get_session(self) -> requests.Session:
+        if not hasattr(self._local, "session"):
+            session = requests.Session()
+            session.headers.update({
+                "Content-Type": "application/json",
+            })
+            self._local.session = session
+        return self._local.session
 
     def index_document(
         self,
@@ -19,7 +30,12 @@ class TalkingDBClient:
             "document": document,
             "file_index": file_index,
         }
-        res = self.session.post(url, json=payload)
+
+        res = self._get_session().post(
+            url,
+            json=payload,
+            timeout=self.timeout,
+        )
         res.raise_for_status()
         return res.json().get("graph_id")
 
@@ -40,7 +56,11 @@ class TalkingDBClient:
             if metadata is not None:
                 payload["metadata"] = metadata
 
-            res = self.session.post(url, json=payload)
+            res = self._get_session().post(
+                url,
+                json=payload,
+                timeout=self.timeout,
+            )
             res.raise_for_status()
             nodes.extend(res.json().get("elements", []))
 
