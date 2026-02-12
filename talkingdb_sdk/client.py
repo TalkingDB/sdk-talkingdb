@@ -60,14 +60,12 @@ class TalkingDBClient:
     def index_document(
         self,
         document: dict,
-        file_index: dict,
         metadata: dict,
     ) -> Optional[str]:
         url = f"{self.host}/index/document/elements"
         payload = {
             "metadata": metadata,
             "document": document,
-            "file_index": file_index,
         }
 
         res = self._post(url, payload)
