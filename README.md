@@ -6,6 +6,11 @@ The Python SDK for TalkingDB. It lets your code upload documents to a TalkingDB 
 ![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-3776AB)
 ![Import: talkingdb_sdk](https://img.shields.io/badge/import-talkingdb__sdk-555)
 
+<p align="center">
+  <img src="docs/images/demo.gif" alt="A short animated tour of sdk-talkingdb: what it is, how to start, and which page to read next">
+</p>
+<p align="center"><sub>A short tour: what it is, how to start, and what to read next.</sub></p>
+
 | Start here | Go deeper |
 | :--- | :--- |
 | [Quickstart](#quickstart) | [Usage and examples: every method](docs/usage-and-examples.md) |
@@ -87,6 +92,12 @@ Types are in [`types.py`](talkingdb_sdk/types.py); errors are in [`exceptions.py
 
 mayank.g@smarter.codes
 richika.r@smarter.codes
+
+## Support TalkingDB
+
+If sdk-talkingdb saved you time, please [give it a star](https://github.com/TalkingDB/sdk-talkingdb) ⭐. Stars help other developers find the project.
+
+Found a bug, or a document it gets wrong? [Open an issue](https://github.com/TalkingDB/sdk-talkingdb/issues/new). We are always here to help and open to a conversation. Explore the TalkingDB applications at [talkingdb.io](https://talkingdb.io/#applications).
 
 ## License
 
