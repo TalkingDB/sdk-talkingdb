@@ -1,0 +1,23 @@
+sequenceDiagram
+    accTitle: How ingest_document and match_node use the TTT service
+    accDescr: The SDK uploads a file and gets a job id back at once. It polls the job every second until the state is terminal. On COMPLETED it returns the job status with the graph id; on FAILED it raises JobFailedError. The app then queries one or more graph ids.
+    autonumber
+    participant App as Your app
+    participant SDK as TalkingDBClient
+    participant TTT as TTT service
+    App->>SDK: ingest_document("report.pdf")
+    SDK->>TTT: POST /v1/documents (multipart)
+    TTT-->>SDK: 202 job_id, state QUEUED
+    loop every poll_interval (1 s)
+        SDK->>TTT: GET /v1/jobs/{job_id}
+        TTT-->>SDK: state, stage, percent
+    end
+    alt COMPLETED
+        SDK-->>App: JobStatus with result_graph_id
+    else FAILED
+        SDK-->>App: raise JobFailedError(error_code, message)
+    end
+    App->>SDK: match_node([graph_id], "question")
+    SDK->>TTT: POST /v1/queries
+    TTT-->>SDK: elements
+    SDK-->>App: list of elements

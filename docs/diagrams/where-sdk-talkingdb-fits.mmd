@@ -1,0 +1,8 @@
+flowchart LR
+    accTitle: Where sdk-talkingdb fits
+    accDescr: Your Python application uses TalkingDBClient, which calls the TTT service over HTTPS with an API key. TTT parses documents with the content elementizer and stores searchable graphs.
+    APP["Your Python app"] --> SDK["sdk-talkingdb<br>TalkingDBClient"]:::here
+    SDK -- "HTTPS + Bearer API key<br>/v1/documents, /v1/jobs, /v1/queries" --> TTT["module-ttt service<br>(TTT)"]
+    TTT --> CE["package-content-elementizer"]
+    TTT --> G[("Document graphs")]
+    classDef here stroke-width:3px
