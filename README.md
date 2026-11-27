@@ -7,9 +7,9 @@ The Python SDK for TalkingDB. It lets your code upload documents to a TalkingDB 
 ![Import: talkingdb_sdk](https://img.shields.io/badge/import-talkingdb__sdk-555)
 
 <p align="center">
-  <img src="docs/images/demo.gif" alt="A short animated tour of sdk-talkingdb: what it is, how to start, and which page to read next">
+  <img src="docs/images/demo.gif" alt="Animated diagram: upload, wait and query with the SDK, the job states it polls, the exception for each HTTP status, and the retry policy">
 </p>
-<p align="center"><sub>A short tour: what it is, how to start, and what to read next.</sub></p>
+<p align="center"><sub>Drawn from <code>talkingdb_sdk/client.py</code> and <code>example_async.py</code>.</sub></p>
 
 | Start here | Go deeper |
 | :--- | :--- |
